@@ -11,6 +11,10 @@ const HeaderWrapper = styled.div`
   align-items: center;
   padding-inline: 100px;
   padding-block: 40px;
+
+  @media (max-width: 680px) {
+    padding: 20px 20px;
+  }
 `;
 
 const HeaderNav = styled.nav`
@@ -25,6 +29,10 @@ const Logo = styled.h1`
   justify-content: center;
   align-items: flex-end;
   gap: 5px;
+
+  @media (max-width: 680px) {
+    transform: scale(0.5);
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -33,6 +41,10 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 680px) {
+    font-size: 12px;
   }
 `;
 
