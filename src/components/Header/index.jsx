@@ -59,7 +59,7 @@ function Header() {
       </Logo>
       <HeaderNav>
         <StyledLink to="/">Accueil</StyledLink>
-        <StyledLink to="/about">A Propos</StyledLink>
+        <StyledLink to="/about">À Propos</StyledLink>
       </HeaderNav>
     </HeaderWrapper>
   );
