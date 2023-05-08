@@ -3,6 +3,7 @@ import colors from "../../utils/styles/colors";
 import { ReactComponent as OpenDropdown } from "../../assets/ArrowDropdown/OpenDropdown.svg";
 import { ReactComponent as CloseDropdown } from "../../assets/ArrowDropdown/CloseDropdown.svg";
 import { useState } from "react";
+import AboutDatas from "../../utils/datas/AboutDatas";
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -29,6 +30,19 @@ const StyledButton = styled.button`
   padding-inline: 18px;
 `;
 
+const TextWrapper = styled.div`
+  width: 100%;
+  background-color: #f6f6f6;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+`;
+
+const Description = styled.p`
+  color: ${colors.primary};
+  font-size: 24px;
+  padding: 36px 27px 19px 18px;
+`;
+
 function AboutDropdown() {
   const [isOpen, setOpen] = useState([false, false, false, false]);
 
@@ -40,11 +54,18 @@ function AboutDropdown() {
 
   return (
     <ButtonWrapper>
-      {["Fiabilité", "Respect", "Service", "Sécurité"].map((text, index) => (
-        <StyledButton key={index} onClick={() => handleClick(index)}>
-          {text}
-          <i>{isOpen[index] ? <CloseDropdown /> : <OpenDropdown />}</i>
-        </StyledButton>
+      {AboutDatas.map(({ title, description }, index) => (
+        <div key={index} style={{ width: "100%" }}>
+          <StyledButton onClick={() => handleClick(index)}>
+            {title}
+            <i>{isOpen[index] ? <CloseDropdown /> : <OpenDropdown />}</i>
+          </StyledButton>
+          {isOpen[index] && (
+            <TextWrapper>
+              <Description>{description}</Description>
+            </TextWrapper>
+          )}
+        </div>
       ))}
     </ButtonWrapper>
   );
