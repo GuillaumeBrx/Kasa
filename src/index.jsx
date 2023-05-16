@@ -18,6 +18,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Montserrat', sans-serif;
+    max-width: 1440px;
+    margin: auto;
   }
 `;
 
@@ -29,7 +31,7 @@ root.render(
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/logements" element={<Logements />} />
+        <Route path="/logements/:id" element={<Logements />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<Error />} />
       </Routes>
