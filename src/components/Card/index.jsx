@@ -42,6 +42,7 @@ const CardCover = styled.img`
   height: 256px;
   width: inherit;
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
 `;
 
 function Card({ title, cover, id }) {
