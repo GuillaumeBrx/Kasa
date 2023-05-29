@@ -3,7 +3,6 @@ import colors from "../../utils/styles/colors";
 import { ReactComponent as OpenDropdown } from "../../assets/ArrowDropdown/OpenDropdown.svg";
 import { ReactComponent as CloseDropdown } from "../../assets/ArrowDropdown/CloseDropdown.svg";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -38,43 +37,39 @@ const TextWrapper = styled.div`
 
 const Description = styled.p`
   color: ${colors.primary};
-  font-size: 24px;
+  font-size: 18px;
   padding: 36px 27px 19px 18px;
+  height: 194px;
 `;
 
-function Dropdown({ title, description }) {
+const StyledList = styled.ul`
+  list-style-type: none;
+`;
+
+function EquipmentsDropdown({ equipments }) {
   const [isOpen, setOpen] = useState(false);
-  const location = useLocation();
 
   const handleClick = () => {
     setOpen(!isOpen);
   };
 
-  return location.pathname === "/about" ? (
+  return (
     <ButtonWrapper>
       <div style={{ width: "100%" }}>
         <StyledButton onClick={handleClick}>
-          {title}
+          Équipements
           <i>{isOpen ? <CloseDropdown /> : <OpenDropdown />}</i>
         </StyledButton>
         {isOpen && (
           <TextWrapper>
-            <Description>{description}</Description>
-          </TextWrapper>
-        )}
-      </div>
-    </ButtonWrapper>
-  ) : (
-    <ButtonWrapper>
-      <div style={{ width: "100%" }}>
-        <StyledButton onClick={handleClick}>
-          Description
-          <i>{isOpen ? <CloseDropdown /> : <OpenDropdown />}</i>
-        </StyledButton>
-        {isOpen && (
-          <TextWrapper>
-            <Description style={{ height: "194px", fontSize: "18px" }}>
-              {description}
+            <Description>
+              <StyledList>
+                {equipments.map((equipment, index) => (
+                  <li style={{ margin: "6px" }} key={index}>
+                    {equipment}
+                  </li>
+                ))}
+              </StyledList>
             </Description>
           </TextWrapper>
         )}
@@ -83,4 +78,4 @@ function Dropdown({ title, description }) {
   );
 }
 
-export default Dropdown;
+export default EquipmentsDropdown;
