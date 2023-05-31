@@ -1,11 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import colors from "../../utils/styles/colors";
 import ApartmentData from "../../utils/datas/ApartmentDatas";
 import Carrousel from "../../components/Carrousel";
 import Tags from "../../components/Tags";
 import Dropdown from "../../components/Dropdown";
-import EquipmentsDropdown from "../../components/EquipmentsDropdown";
 import { ReactComponent as PinkStar } from "../../assets/Stars/PinkStar.svg";
 import { ReactComponent as GreyStar } from "../../assets/Stars/GreyStar.svg";
 
@@ -93,9 +92,14 @@ function Logements() {
     return stars;
   };
 
+  if (!Apartment) {
+    return <Navigate to="*" />;
+  }
+
   return (
     <main>
       <Carrousel slides={Apartment.pictures} />
+
       <StyledSection>
         <StyledDiv>
           <div>
@@ -116,12 +120,17 @@ function Logements() {
           <StarsWrapper>{renderStars(Apartment.rating)}</StarsWrapper>
         </StyledDiv>
       </StyledSection>
+
       <StyledSectiondDropdown>
         <StyledDropdownDiv>
-          <Dropdown description={Apartment.description} />
+          <Dropdown
+            type="description"
+            title="Description"
+            description={Apartment.description}
+          />
         </StyledDropdownDiv>
         <StyledDropdownDiv>
-          <EquipmentsDropdown equipments={Apartment.equipments} />
+          <Dropdown type="equipments" equipments={Apartment.equipments} />
         </StyledDropdownDiv>
       </StyledSectiondDropdown>
     </main>

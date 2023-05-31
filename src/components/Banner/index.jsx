@@ -25,6 +25,12 @@ const BannerWrapper = styled.div`
     opacity: 0.3;
     border-radius: 25px;
   }
+
+  @media (max-width: 680px) {
+    margin-top: 0px;
+    margin-bottom: 9px;
+    background-size: cover;
+  }
 `;
 
 const BannerText = styled.p`

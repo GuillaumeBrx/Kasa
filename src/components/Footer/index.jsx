@@ -24,6 +24,12 @@ const LogoDiv = styled.div`
   gap: 5px;
 `;
 
+const StyledParagraph = styled.p`
+  @media (max-width: 680px) {
+    font-size: 12px;
+  }
+`;
+
 function Footer() {
   return (
     <div>
@@ -34,7 +40,7 @@ function Footer() {
           <img src={SLOGO} alt="S Logo" height={27.84} width={22.86} />
           <img src={ALOGO} alt="A Logo" height={27.94} width={23.72} />
         </LogoDiv>
-        <p>© 2020 Kasa. All rights reserved</p>
+        <StyledParagraph>© 2020 Kasa. All rights reserved</StyledParagraph>
       </FooterWrapper>
     </div>
   );

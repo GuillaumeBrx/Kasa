@@ -13,7 +13,9 @@ const HeaderWrapper = styled.div`
   padding-block: 40px;
 
   @media (max-width: 680px) {
-    padding: 20px 20px;
+    padding-inline: 0 20px;
+    padding-block: 20px;
+    // justify-content: center;
   }
 `;
 
@@ -22,6 +24,10 @@ const HeaderNav = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 57px;
+
+  @media (max-width: 680px) {
+    gap: 10px;
+  }
 `;
 
 const Logo = styled.h1`
@@ -45,6 +51,7 @@ const StyledLink = styled(Link)`
 
   @media (max-width: 680px) {
     font-size: 12px;
+    text-transform: uppercase;
   }
 `;
 

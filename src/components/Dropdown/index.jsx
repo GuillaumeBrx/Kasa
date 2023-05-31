@@ -3,7 +3,6 @@ import colors from "../../utils/styles/colors";
 import { ReactComponent as OpenDropdown } from "../../assets/ArrowDropdown/OpenDropdown.svg";
 import { ReactComponent as CloseDropdown } from "../../assets/ArrowDropdown/CloseDropdown.svg";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -11,7 +10,10 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding-block: 15px;
-  gap: 31px;
+
+  @media (max-width: 680px) {
+    padding-block: 10px;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -27,6 +29,25 @@ const StyledButton = styled.button`
   font-size: 24px;
   cursor: pointer;
   padding-inline: 18px;
+
+  @media (max-width: 680px) {
+    height: 30px;
+    font-size: 13px;
+  }
+`;
+
+const StyledOpenDropdown = styled(OpenDropdown)`
+  @media (max-width: 680px) {
+    height: 9px;
+    width: 16px;
+  }
+`;
+
+const StyledCloseDropdown = styled(CloseDropdown)`
+  @media (max-width: 680px) {
+    height: 9px;
+    width: 16px;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -38,49 +59,71 @@ const TextWrapper = styled.div`
 
 const Description = styled.p`
   color: ${colors.primary};
-  font-size: 24px;
+  font-size: 18px;
   padding: 36px 27px 19px 18px;
+
+  @media (max-width: 680px) {
+    font-size: 12px;
+    padding: 23px 6px 52px 11px;
+  }
 `;
 
-function Dropdown({ title, description }) {
+const StyledList = styled.ul`
+  list-style-type: none;
+`;
+
+function Dropdown({ title, description, type, equipments }) {
   const [isOpen, setOpen] = useState(false);
-  const location = useLocation();
 
   const handleClick = () => {
     setOpen(!isOpen);
   };
 
-  return location.pathname === "/about" ? (
-    <ButtonWrapper>
-      <div style={{ width: "100%" }}>
-        <StyledButton onClick={handleClick}>
-          {title}
-          <i>{isOpen ? <CloseDropdown /> : <OpenDropdown />}</i>
-        </StyledButton>
-        {isOpen && (
-          <TextWrapper>
-            <Description>{description}</Description>
-          </TextWrapper>
-        )}
-      </div>
-    </ButtonWrapper>
-  ) : (
-    <ButtonWrapper>
-      <div style={{ width: "100%" }}>
-        <StyledButton onClick={handleClick}>
-          Description
-          <i>{isOpen ? <CloseDropdown /> : <OpenDropdown />}</i>
-        </StyledButton>
-        {isOpen && (
-          <TextWrapper>
-            <Description style={{ height: "194px", fontSize: "18px" }}>
-              {description}
-            </Description>
-          </TextWrapper>
-        )}
-      </div>
-    </ButtonWrapper>
-  );
+  if (type === "description") {
+    return (
+      <ButtonWrapper>
+        <div style={{ width: "100%" }}>
+          <StyledButton onClick={handleClick}>
+            {title}
+            <i>{isOpen ? <StyledCloseDropdown /> : <StyledOpenDropdown />}</i>
+          </StyledButton>
+          {isOpen && (
+            <TextWrapper>
+              <Description style={{ height: "194px" }}>
+                {description}
+              </Description>
+            </TextWrapper>
+          )}
+        </div>
+      </ButtonWrapper>
+    );
+  }
+
+  if (type === "equipments") {
+    return (
+      <ButtonWrapper>
+        <div style={{ width: "100%" }}>
+          <StyledButton onClick={handleClick}>
+            Équipements
+            <i>{isOpen ? <CloseDropdown /> : <OpenDropdown />}</i>
+          </StyledButton>
+          {isOpen && (
+            <TextWrapper>
+              <Description>
+                <StyledList>
+                  {equipments.map((equipment, index) => (
+                    <li style={{ margin: "6px" }} key={index}>
+                      {equipment}
+                    </li>
+                  ))}
+                </StyledList>
+              </Description>
+            </TextWrapper>
+          )}
+        </div>
+      </ButtonWrapper>
+    );
+  }
 }
 
 export default Dropdown;
