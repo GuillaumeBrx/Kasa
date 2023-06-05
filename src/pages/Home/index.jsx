@@ -13,6 +13,7 @@ const StyledMain = styled.main`
 
 const CardsContainer = styled.div`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   row-gap: 50px;
   column-gap: 60px;

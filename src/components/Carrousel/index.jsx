@@ -73,6 +73,10 @@ const SliderNumber = styled.span`
   bottom: 25px;
   left: 50%;
   color: white;
+
+  @media (max-width: 898px) {
+    display: none;
+  }
 `;
 
 function Carrousel({ slides }) {

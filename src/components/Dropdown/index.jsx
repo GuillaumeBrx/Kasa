@@ -103,7 +103,7 @@ function Dropdown({ title, description, type, equipments }) {
         <div style={{ width: "100%" }}>
           <StyledButton onClick={handleClick}>
             Équipements
-            <i>{isOpen ? <CloseDropdown /> : <OpenDropdown />}</i>
+            <i>{isOpen ? <StyledCloseDropdown /> : <StyledOpenDropdown />}</i>
           </StyledButton>
           {isOpen && (
             <TextWrapper>
