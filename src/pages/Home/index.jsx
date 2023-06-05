@@ -5,6 +5,10 @@ import ApartmentDatas from "../../utils/datas/ApartmentDatas";
 
 const StyledMain = styled.main`
   padding-inline: 100px;
+
+  @media (max-width: 600px) {
+    padding-inline: 20px;
+  }
 `;
 
 const CardsContainer = styled.div`
@@ -16,6 +20,12 @@ const CardsContainer = styled.div`
   background-color: #f6f6f6;
   border-radius: 25px;
   padding: 56px 50px;
+
+  @media (max-width: 600px) {
+    padding: 0;
+    background-color: white;
+    justify-content: center;
+  }
 `;
 
 function Home() {

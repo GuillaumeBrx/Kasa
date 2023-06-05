@@ -13,6 +13,10 @@ const CardWrapper = styled.div`
   background-color: ${colors.primary};
   position: relative;
   border-radius: 10px;
+
+  @media (max-width: 600px) {
+    height: 255px;
+  }
 `;
 
 const CardLink = styled(Link)`
@@ -34,6 +38,14 @@ const CardTitle = styled.p`
   font-size: 18px;
   padding: 20px;
   width: 100%;
+
+  @media (max-width: 600px) {
+    height: 64px;
+    padding: 0;
+    padding-inline: 20px;
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const CardCover = styled.img`
@@ -43,6 +55,10 @@ const CardCover = styled.img`
   width: inherit;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
+
+  @media (max-width: 600px) {
+    height: 191px;
+  }
 `;
 
 function Card({ title, cover, id }) {
