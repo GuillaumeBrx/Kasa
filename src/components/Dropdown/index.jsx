@@ -89,9 +89,7 @@ function Dropdown({ title, description, type, equipments }) {
           </StyledButton>
           {isOpen && (
             <TextWrapper>
-              <Description style={{ height: "194px" }}>
-                {description}
-              </Description>
+              <Description>{description}</Description>
             </TextWrapper>
           )}
         </div>

@@ -21,7 +21,7 @@ const CardsContainer = styled.div`
   border-radius: 25px;
   padding: 56px 50px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 1039px) {
     padding: 0;
     background-color: white;
     justify-content: center;

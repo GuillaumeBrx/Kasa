@@ -7,9 +7,12 @@ const SlideWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  margin-inline: auto;
-  width: 1240px;
+  padding-inline: 100px;
   border-radius: 25px;
+
+  @media (max-width: 898px) {
+    padding-inline: 20px;
+  }
 `;
 
 const Arrow = styled.p`
@@ -19,23 +22,50 @@ const Arrow = styled.p`
   cursor: pointer;
 
   &.left-Arrow {
-    left: 25px;
+    left: 150px;
+
+    @media (max-width: 898px) {
+      left: 25px;
+    }
   }
 
   &.right-Arrow {
-    right: 25px;
+    right: 150px;
+
+    @media (max-width: 898px) {
+      right: 25px;
+    }
   }
 `;
 
 const Slider = styled.div`
   display: ${(props) => (props.active ? "block" : "none")};
+  width: 100%;
 `;
 
 const SlideImage = styled.img`
-  width: 1240px;
+  width: 100%;
   height: 415px;
   border-radius: 25px;
   object-fit: cover;
+
+  @media (max-width: 898px) {
+    height: 255px;
+  }
+`;
+
+const StyledRightArrow = styled(RightArrow)`
+  @media (max-width: 898px) {
+    height: 20px;
+    width: 12px;
+  }
+`;
+
+const StyledLeftArrow = styled(LeftArrow)`
+  @media (max-width: 898px) {
+    height: 20px;
+    width: 12px;
+  }
 `;
 
 const SliderNumber = styled.span`
@@ -65,12 +95,12 @@ function Carrousel({ slides }) {
     <SlideWrapper>
       {length > 1 && (
         <Arrow className="left-Arrow" onClick={prevImage}>
-          <LeftArrow />
+          <StyledLeftArrow />
         </Arrow>
       )}
       {length > 1 && (
         <Arrow className="right-Arrow" onClick={nextImage}>
-          <RightArrow />
+          <StyledRightArrow />
         </Arrow>
       )}
       {slides.map((image, index) => (

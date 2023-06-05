@@ -12,57 +12,106 @@ const StyledSection = styled.section`
   display: flex;
   margin-inline: 100px;
   justify-content: space-between;
+
+  @media (max-width: 898px) {
+    display: flex;
+    flex-direction: column;
+    margin-inline: 22px;
+  }
 `;
 
-const StyledSectiondDropdown = styled.section`
+const StyledSectionDropdown = styled.section`
   display: flex;
   margin-inline: 100px;
   margin-top: 26px;
   justify-content: center;
   gap: 76px;
+
+  @media (max-width: 898px) {
+    display: block;
+    margin-inline: 22px;
+  }
 `;
 
 const StyledDropdownDiv = styled.div`
   width: 582px;
+
+  @media (max-width: 898px) {
+    width: 100%;
+  }
 `;
 
-const StyledDiv = styled.div`
+const StyledDivMain = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 25px;
   justify-content: space-between;
 `;
 
+const StyledDivHost = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  justify-content: space-between;
+
+  @media (max-width: 898px) {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+`;
+
 const StyledTitle = styled.p`
   color: ${colors.primary};
   font-size: 36px;
+
+  @media (max-width: 500px) {
+    font-size: 18px;
+  }
 `;
 
 const StyledLocation = styled.p`
   color: ${colors.primary};
   font-size: 18px;
+
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 const HostWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  @media (max-width: 500px) {
+    gap: 10px;
+  }
 `;
 
 const StyledHostName = styled.p`
   color: ${colors.primary};
   font-size: 18px;
   max-width: 93px;
+
+  @media (max-width: 500px) {
+    font-size: 12px;
+  }
 `;
 
 const StyledHostPicture = styled.img`
   width: 64px;
   height: 64px;
   border-radius: 50%;
+
+  @media (max-width: 500px) {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const TagsWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 23px;
 `;
@@ -70,6 +119,24 @@ const TagsWrapper = styled.div`
 const StarsWrapper = styled.div`
   display: flex;
   gap: 15px;
+
+  @media (max-width: 500px) {
+    gap: 6px;
+  }
+`;
+
+const StyledPinkStar = styled(PinkStar)`
+  @media (max-width: 500px) {
+    width: 13px;
+    height: 13px;
+  }
+`;
+
+const StyledGreyStar = styled(GreyStar)`
+  @media (max-width: 500px) {
+    width: 13px;
+    height: 13px;
+  }
 `;
 
 function Logements() {
@@ -82,11 +149,11 @@ function Logements() {
     const greyStars = 5 - pinkStars;
 
     for (let i = 0; i < pinkStars; i++) {
-      stars.push(<PinkStar key={`pinkStar-${i}`} />);
+      stars.push(<StyledPinkStar key={`pinkStar-${i}`} />);
     }
 
     for (let i = 0; i < greyStars; i++) {
-      stars.push(<GreyStar key={`greyStar-${i}`} />);
+      stars.push(<StyledGreyStar key={`greyStar-${i}`} />);
     }
 
     return stars;
@@ -101,7 +168,7 @@ function Logements() {
       <Carrousel slides={Apartment.pictures} />
 
       <StyledSection>
-        <StyledDiv>
+        <StyledDivMain>
           <div>
             <StyledTitle>{Apartment.title}</StyledTitle>
             <StyledLocation>{Apartment.location}</StyledLocation>
@@ -111,17 +178,17 @@ function Logements() {
               <Tags key={index} name={tag} />
             ))}
           </TagsWrapper>
-        </StyledDiv>
-        <StyledDiv>
+        </StyledDivMain>
+        <StyledDivHost>
           <HostWrapper>
             <StyledHostName>{Apartment.host.name}</StyledHostName>
             <StyledHostPicture src={Apartment.host.picture} alt="host" />
           </HostWrapper>
           <StarsWrapper>{renderStars(Apartment.rating)}</StarsWrapper>
-        </StyledDiv>
+        </StyledDivHost>
       </StyledSection>
 
-      <StyledSectiondDropdown>
+      <StyledSectionDropdown>
         <StyledDropdownDiv>
           <Dropdown
             type="description"
@@ -132,7 +199,7 @@ function Logements() {
         <StyledDropdownDiv>
           <Dropdown type="equipments" equipments={Apartment.equipments} />
         </StyledDropdownDiv>
-      </StyledSectiondDropdown>
+      </StyledSectionDropdown>
     </main>
   );
 }
